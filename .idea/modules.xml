@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/rest-api-node-typescript-master.iml" filepath="$PROJECT_DIR$/.idea/rest-api-node-typescript-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MyNodeServer.iml" filepath="$PROJECT_DIR$/.idea/MyNodeServer.iml" />
     </modules>
   </component>
 </project>
