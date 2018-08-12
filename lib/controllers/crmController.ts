@@ -1,7 +1,6 @@
 import * as mongoose from 'mongoose';
 import { ContactSchema, ClausesKitSchema, ClausesSchema } from '../models/crmModel';
 import { Request, Response } from 'express';
-
 const ClausesKit = mongoose.model('clauses-kit', ClausesKitSchema);
 export class ClausesKitController{
     public addNewClausesKit (req: Request, res: Response) {
