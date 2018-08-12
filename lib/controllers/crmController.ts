@@ -4,18 +4,21 @@ import { Request, Response } from 'express';
 
 const ClausesKit = mongoose.model('clauses-kit', ClausesKitSchema);
 export class ClausesKitController{
-    populateId(inRecBody){
-        inRecBody._id =  new mongoose.Types.ObjectId()
-    }
     public addNewClausesKit (req: Request, res: Response) {
-        let newClausesKit = new ClausesKit(this.populateId(req.body)
-                                );
+        console.log(new mongoose.Types.ObjectId());
+        // let newClausesKit = new ClausesKit(this.populateId(req.body));
+        // ??????????????????????????????????
+        let newClausesKit = new ClausesKit(req.body);
+        newClausesKit._id =  new mongoose.Types.ObjectId();
         newClausesKit.save((err, clausesKit) => {
             if(err){
                 res.send(err);
             }
             res.json(clausesKit);
         });
+    }
+    public populateId(inRecBody){
+        inRecBody._id =  new mongoose.Types.ObjectId()
     }
     public getClausesKit (req: Request, res: Response) {
         ClausesKit.find({}, (err, clausesKit) => {

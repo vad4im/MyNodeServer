@@ -1,4 +1,66 @@
 https://itnext.io/building-restful-web-apis-with-node-js-express-mongodb-and-typescript-part-1-2-195bdaf129cf
+https://github.com/dalenguyen/rest-api-node-typescript
+
+autentification
+It’s sad that by default, there is no security for MongoDB like at all. 
+If you want to check your current configuration. Go to your mongo installation directory and type mongo.
+As you can see, there is no Access control for the database and anyone can do anything with the database. So we will enable authentication feature for MongoDB.
+
+d:\mongodb\bin>mongo
+MongoDB shell version v3.4.16-28-ge86b089be2
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.4.16-28-ge86b089be2
+Server has startup warnings:
+2018-08-11T18:09:36.323+0300 I CONTROL  [initandlisten]
+2018-08-11T18:09:36.323+0300 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2018-08-11T18:09:36.323+0300 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2018-08-11T18:09:36.323+0300 I CONTROL  [initandlisten]
+
+First, we need to create an account in order to authenticate with Mongodb.
+
+2018-08-11T19:04:20.363+0300 I CONTROL  [initandlisten]
+> use clausesDB
+switched to db clausesDB
+> db.createUser(
+... {
+... user: 'clausesuser2',
+... pwd: 'clauses2user2',
+... roles: [ {role: 'readWrite', db: 'clausesDB'}]
+... }
+... )
+Successfully added user: {
+        "user" : "clausesuser2",
+        "roles" : [
+                {
+                        "role" : "readWrite",
+                        "db" : "clausesDB"
+                }
+        ]
+}
+    
+After that, we will stop and restart MongoDB with authentication. Remember to check your dbpath.
+
+// Stop MongoDB (Windows)
+net stop MongoDB
+// Start mongodb with authentication
+mongod --auth --port 27017 --dbpath C:\your-data\path
+
+Now, if we login to the mongo shell, there is no warning about access control.
+D:\mongodb\bin>mongo
+MongoDB shell version v3.4.16-28-ge86b089be2
+connecting to: mongodb://127.0.0.1:27017
+
+Or you can connect to the mongo shell with username and password you just created.
+
+mongo --port 27017 -u dalenguyen -p 123123  --authenticationDatabase CRMdb
+Now, if we try to access the database even with the key, we are not able to.
+
+
+
+mongod.exe --auth --port 27017 --dbpath D:\mongodb\data\clausesDB --logpath D:\mongodb\log\mongod.log --install
+net start MongoDB
+
+
 
 # Building RESTful Web APIs with Node.js, Express, MongoDB and TypeScript
 
