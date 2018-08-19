@@ -19,7 +19,7 @@ export class ClausesKitController{
     public populateId(inRecBody){
         inRecBody._id =  new mongoose.Types.ObjectId()
     }
-    public getClausesKit (req: Request, res: Response) {
+    public getClausesKitList (req: Request, res: Response) {
         ClausesKit.find({}, (err, clausesKit) => {
             if(err){
                 res.send(err);
@@ -37,6 +37,8 @@ console.log('Try to delete Phrase '+req.params.kitId +' !!');
         });
     }
 }
+
+
 const Clauses = mongoose.model('Clauses', ClausesSchema);
 export class ClausesController{
     public addNewPhrase (req: Request, res: Response) {
@@ -80,8 +82,17 @@ export class ClausesController{
         });
     }
     public getPhraseWithID (req: Request, res: Response) {
-        console.log(req.params.phraseId);
+        console.log('getPhraseWithID :' + req.params.phraseId);
         Clauses.findById(req.params.phraseId, (err, phrase) => {
+            if(err){
+                res.send(err);
+            }
+            res.json(phrase);
+        });
+    }
+    public getClausesWithKitID (req: Request, res: Response) {
+        console.log('getClausesWithKitID : ' + req.params.kitId);
+        Clauses.find({clausesKitId: req.params.kitId}, (err, phrase) => {
             if(err){
                 res.send(err);
             }

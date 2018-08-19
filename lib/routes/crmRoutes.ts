@@ -17,13 +17,16 @@ export class Routes {
         })
         //Clauses-kit
         app.route('/clauses-kit')
-            .get(this.clausesKitController.getClausesKit)
+            .get(this.clausesKitController.getClausesKitList)
             .post(this.clausesKitController.addNewClausesKit);
         app.route('/clauses-kit/:kitId')
             // .get(this.clausesKitController.getClausesKitWithID)
             // .put(this.clausesKitController.updateClausesKit)
             .delete(this.clausesKitController.deleteClausesKit);
+
         //Clauses
+        app.route('/clausesRef/:kitId')
+            .get(this.clausesController.getClausesWithKitID);
         app.route('/clauses')
             .get(this.clausesController.getClauses)
             .post(this.clausesController.addNewPhrase);
