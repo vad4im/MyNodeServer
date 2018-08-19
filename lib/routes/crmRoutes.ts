@@ -19,6 +19,10 @@ export class Routes {
         app.route('/clauses-kit')
             .get(this.clausesKitController.getClausesKit)
             .post(this.clausesKitController.addNewClausesKit);
+        app.route('/clauses-kit/:kitId')
+            // .get(this.clausesKitController.getClausesKitWithID)
+            // .put(this.clausesKitController.updateClausesKit)
+            .delete(this.clausesKitController.deleteClausesKit);
         //Clauses
         app.route('/clauses')
             .get(this.clausesController.getClauses)

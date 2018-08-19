@@ -27,6 +27,15 @@ export class ClausesKitController{
             res.json(clausesKit);
         });
     }
+    public deleteClausesKit (req: Request, res: Response) {
+        ClausesKit.remove({ _id: req.params.kitId }, (err, info) => {
+console.log('Try to delete Phrase '+req.params.kitId +' !!');
+            if(err){
+                res.send(err);
+            }
+            res.json({ message: 'Successfully deleted clauses KIT!'});
+        });
+    }
 }
 const Clauses = mongoose.model('Clauses', ClausesSchema);
 export class ClausesController{
@@ -38,10 +47,10 @@ export class ClausesController{
         newClauses._id =  new mongoose.Types.ObjectId()
         newClauses.save((err, clauses) => {
             if(err){
-console.log('ClausesController.addNewPhrase err' + err);
+// console.log('ClausesController.addNewPhrase err' + err);
                 res.send(err);
             }
-console.log('ClausesController.addNewPhrase json' + res.json(clauses));
+// console.log('ClausesController.addNewPhrase json' + res.json(clauses));
             res.json(clauses);
         });
     }
