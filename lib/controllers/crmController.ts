@@ -74,6 +74,7 @@ export class ClausesController{
         });
     }
     public updatePhrase (req: Request, res: Response) {
+        console.log ('updatePhrase _id: ' + req.body.orig );
         Clauses.findOneAndUpdate({ _id: req.params.phraseId }, req.body, { new: true }, (err, phrase) => {
             if(err){
                 res.send(err);
