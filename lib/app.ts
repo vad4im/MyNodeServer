@@ -8,7 +8,7 @@ class App {
     public app: express.Application;
     public routePrv: Routes = new Routes();
     // public mongoUrl: string = 'mongodb://localhost/CRMdb';
-    public mongoUrl: string = 'mongodb://clausesuser2:clauses2user2@localhost:27017/clausesDB';
+    public mongoUrl: string = 'mongodb://clausesuser:clauses2user@localhost:27017/clausesDB';
 
 
     constructor() {

@@ -57,6 +57,7 @@ export class ClausesController{
         });
     }
     public getClauses (req: Request, res: Response) {
+        console.log('getClauses :' + req.params.phraseId);
         Clauses.find({}, (err, clauses) => {
             if(err){
                 res.send(err);
